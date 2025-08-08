@@ -22,7 +22,12 @@ Partial Class fromDoctor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.gbxDoctores = New System.Windows.Forms.GroupBox()
+        Me.txtlicencia = New System.Windows.Forms.TextBox()
+        Me.licencia_medica = New System.Windows.Forms.Label()
+        Me.cboDoctor = New System.Windows.Forms.ComboBox()
+        Me.lblCorreo = New System.Windows.Forms.Label()
         Me.cboEspecialidad = New System.Windows.Forms.ComboBox()
         Me.lblEspecialidad = New System.Windows.Forms.Label()
         Me.lblId = New System.Windows.Forms.Label()
@@ -44,6 +49,9 @@ Partial Class fromDoctor
         Me.btnSalir = New System.Windows.Forms.Button()
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.btnRegistrar = New System.Windows.Forms.Button()
+        Me.ttRegistrar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttLimpiar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttSalir = New System.Windows.Forms.ToolTip(Me.components)
         Me.gbxDoctores.SuspendLayout()
         CType(Me.dgv_doctor_view, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -51,6 +59,10 @@ Partial Class fromDoctor
         'gbxDoctores
         '
         Me.gbxDoctores.BackColor = System.Drawing.Color.Aquamarine
+        Me.gbxDoctores.Controls.Add(Me.txtlicencia)
+        Me.gbxDoctores.Controls.Add(Me.licencia_medica)
+        Me.gbxDoctores.Controls.Add(Me.cboDoctor)
+        Me.gbxDoctores.Controls.Add(Me.lblCorreo)
         Me.gbxDoctores.Controls.Add(Me.cboEspecialidad)
         Me.gbxDoctores.Controls.Add(Me.lblEspecialidad)
         Me.gbxDoctores.Controls.Add(Me.lblId)
@@ -80,10 +92,43 @@ Partial Class fromDoctor
         Me.gbxDoctores.TabStop = False
         Me.gbxDoctores.Text = "Doctores"
         '
+        'txtlicencia
+        '
+        Me.txtlicencia.Location = New System.Drawing.Point(833, 235)
+        Me.txtlicencia.Name = "txtlicencia"
+        Me.txtlicencia.Size = New System.Drawing.Size(192, 33)
+        Me.txtlicencia.TabIndex = 29
+        '
+        'licencia_medica
+        '
+        Me.licencia_medica.AutoSize = True
+        Me.licencia_medica.Location = New System.Drawing.Point(664, 242)
+        Me.licencia_medica.Name = "licencia_medica"
+        Me.licencia_medica.Size = New System.Drawing.Size(163, 26)
+        Me.licencia_medica.TabIndex = 28
+        Me.licencia_medica.Text = "Licencia Medica"
+        '
+        'cboDoctor
+        '
+        Me.cboDoctor.FormattingEnabled = True
+        Me.cboDoctor.Location = New System.Drawing.Point(498, 167)
+        Me.cboDoctor.Name = "cboDoctor"
+        Me.cboDoctor.Size = New System.Drawing.Size(192, 34)
+        Me.cboDoctor.TabIndex = 27
+        '
+        'lblCorreo
+        '
+        Me.lblCorreo.AutoSize = True
+        Me.lblCorreo.Location = New System.Drawing.Point(413, 175)
+        Me.lblCorreo.Name = "lblCorreo"
+        Me.lblCorreo.Size = New System.Drawing.Size(75, 26)
+        Me.lblCorreo.TabIndex = 26
+        Me.lblCorreo.Text = "Correo"
+        '
         'cboEspecialidad
         '
         Me.cboEspecialidad.FormattingEnabled = True
-        Me.cboEspecialidad.Location = New System.Drawing.Point(833, 185)
+        Me.cboEspecialidad.Location = New System.Drawing.Point(833, 172)
         Me.cboEspecialidad.Name = "cboEspecialidad"
         Me.cboEspecialidad.Size = New System.Drawing.Size(192, 34)
         Me.cboEspecialidad.TabIndex = 25
@@ -91,7 +136,7 @@ Partial Class fromDoctor
         'lblEspecialidad
         '
         Me.lblEspecialidad.AutoSize = True
-        Me.lblEspecialidad.Location = New System.Drawing.Point(697, 188)
+        Me.lblEspecialidad.Location = New System.Drawing.Point(698, 180)
         Me.lblEspecialidad.Name = "lblEspecialidad"
         Me.lblEspecialidad.Size = New System.Drawing.Size(129, 26)
         Me.lblEspecialidad.TabIndex = 24
@@ -109,11 +154,11 @@ Partial Class fromDoctor
         'dgv_doctor_view
         '
         Me.dgv_doctor_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_doctor_view.Location = New System.Drawing.Point(161, 266)
+        Me.dgv_doctor_view.Location = New System.Drawing.Point(161, 283)
         Me.dgv_doctor_view.Name = "dgv_doctor_view"
         Me.dgv_doctor_view.RowHeadersWidth = 62
         Me.dgv_doctor_view.RowTemplate.Height = 28
-        Me.dgv_doctor_view.Size = New System.Drawing.Size(864, 188)
+        Me.dgv_doctor_view.Size = New System.Drawing.Size(864, 171)
         Me.dgv_doctor_view.TabIndex = 22
         '
         'lblDireccion
@@ -139,7 +184,7 @@ Partial Class fromDoctor
         Me.txtDireccion.Location = New System.Drawing.Point(161, 155)
         Me.txtDireccion.Multiline = True
         Me.txtDireccion.Name = "txtDireccion"
-        Me.txtDireccion.Size = New System.Drawing.Size(439, 89)
+        Me.txtDireccion.Size = New System.Drawing.Size(192, 89)
         Me.txtDireccion.TabIndex = 18
         '
         'lblSexo
@@ -160,7 +205,7 @@ Partial Class fromDoctor
         '
         'txtApellidos
         '
-        Me.txtApellidos.Location = New System.Drawing.Point(494, 104)
+        Me.txtApellidos.Location = New System.Drawing.Point(498, 104)
         Me.txtApellidos.Name = "txtApellidos"
         Me.txtApellidos.Size = New System.Drawing.Size(192, 33)
         Me.txtApellidos.TabIndex = 15
@@ -174,7 +219,7 @@ Partial Class fromDoctor
         '
         'txtTelefono
         '
-        Me.txtTelefono.Location = New System.Drawing.Point(494, 32)
+        Me.txtTelefono.Location = New System.Drawing.Point(498, 32)
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(192, 33)
         Me.txtTelefono.TabIndex = 13
@@ -266,7 +311,8 @@ Partial Class fromDoctor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1107, 585)
+        Me.AutoSize = True
+        Me.ClientSize = New System.Drawing.Size(1067, 544)
         Me.Controls.Add(Me.gbxDoctores)
         Me.Name = "fromDoctor"
         Me.Text = "fromDoctor"
@@ -299,4 +345,11 @@ Partial Class fromDoctor
     Friend WithEvents lblId As Label
     Friend WithEvents cboEspecialidad As ComboBox
     Friend WithEvents lblEspecialidad As Label
+    Friend WithEvents cboDoctor As ComboBox
+    Friend WithEvents lblCorreo As Label
+    Friend WithEvents txtlicencia As TextBox
+    Friend WithEvents licencia_medica As Label
+    Friend WithEvents ttRegistrar As ToolTip
+    Friend WithEvents ttLimpiar As ToolTip
+    Friend WithEvents ttSalir As ToolTip
 End Class

@@ -22,6 +22,7 @@ Partial Class frmEspecialidades
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.gbxPersonas = New System.Windows.Forms.GroupBox()
         Me.lblId = New System.Windows.Forms.Label()
         Me.btn_eliminar = New System.Windows.Forms.Button()
@@ -32,6 +33,11 @@ Partial Class frmEspecialidades
         Me.btn_regresar = New System.Windows.Forms.Button()
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.btn_guardar = New System.Windows.Forms.Button()
+        Me.ttGuardar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttSalir = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttLimpiar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttEditar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttEliminar = New System.Windows.Forms.ToolTip(Me.components)
         Me.gbxPersonas.SuspendLayout()
         CType(Me.dgv_especialidades, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -49,11 +55,9 @@ Partial Class frmEspecialidades
         Me.gbxPersonas.Controls.Add(Me.btnLimpiar)
         Me.gbxPersonas.Controls.Add(Me.btn_guardar)
         Me.gbxPersonas.Font = New System.Drawing.Font("Microsoft Tai Le", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbxPersonas.Location = New System.Drawing.Point(8, 8)
-        Me.gbxPersonas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.gbxPersonas.Location = New System.Drawing.Point(12, 12)
         Me.gbxPersonas.Name = "gbxPersonas"
-        Me.gbxPersonas.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.gbxPersonas.Size = New System.Drawing.Size(616, 347)
+        Me.gbxPersonas.Size = New System.Drawing.Size(924, 534)
         Me.gbxPersonas.TabIndex = 3
         Me.gbxPersonas.TabStop = False
         Me.gbxPersonas.Text = "Agregar Especialidad"
@@ -61,20 +65,18 @@ Partial Class frmEspecialidades
         'lblId
         '
         Me.lblId.AutoSize = True
-        Me.lblId.Location = New System.Drawing.Point(416, 146)
-        Me.lblId.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblId.Location = New System.Drawing.Point(885, 489)
         Me.lblId.Name = "lblId"
-        Me.lblId.Size = New System.Drawing.Size(22, 18)
+        Me.lblId.Size = New System.Drawing.Size(33, 26)
         Me.lblId.TabIndex = 24
         Me.lblId.Text = "ID"
         '
         'btn_eliminar
         '
         Me.btn_eliminar.BackColor = System.Drawing.Color.IndianRed
-        Me.btn_eliminar.Location = New System.Drawing.Point(341, 299)
-        Me.btn_eliminar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btn_eliminar.Location = New System.Drawing.Point(511, 460)
         Me.btn_eliminar.Name = "btn_eliminar"
-        Me.btn_eliminar.Size = New System.Drawing.Size(97, 36)
+        Me.btn_eliminar.Size = New System.Drawing.Size(146, 55)
         Me.btn_eliminar.TabIndex = 23
         Me.btn_eliminar.Text = "Eliminar"
         Me.btn_eliminar.UseVisualStyleBackColor = False
@@ -82,10 +84,9 @@ Partial Class frmEspecialidades
         'btnEditar
         '
         Me.btnEditar.BackColor = System.Drawing.Color.DarkGoldenrod
-        Me.btnEditar.Location = New System.Drawing.Point(233, 299)
-        Me.btnEditar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnEditar.Location = New System.Drawing.Point(350, 460)
         Me.btnEditar.Name = "btnEditar"
-        Me.btnEditar.Size = New System.Drawing.Size(97, 36)
+        Me.btnEditar.Size = New System.Drawing.Size(146, 55)
         Me.btnEditar.TabIndex = 22
         Me.btnEditar.Text = "Editar"
         Me.btnEditar.UseVisualStyleBackColor = False
@@ -93,41 +94,37 @@ Partial Class frmEspecialidades
         'dgv_especialidades
         '
         Me.dgv_especialidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_especialidades.Location = New System.Drawing.Point(12, 146)
-        Me.dgv_especialidades.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.dgv_especialidades.Location = New System.Drawing.Point(18, 225)
         Me.dgv_especialidades.Name = "dgv_especialidades"
         Me.dgv_especialidades.RowHeadersWidth = 62
         Me.dgv_especialidades.RowTemplate.Height = 28
-        Me.dgv_especialidades.Size = New System.Drawing.Size(361, 135)
+        Me.dgv_especialidades.Size = New System.Drawing.Size(860, 208)
         Me.dgv_especialidades.TabIndex = 21
         '
         'lblEspecialidad
         '
         Me.lblEspecialidad.AutoSize = True
-        Me.lblEspecialidad.Location = New System.Drawing.Point(9, 49)
-        Me.lblEspecialidad.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblEspecialidad.Location = New System.Drawing.Point(14, 75)
         Me.lblEspecialidad.Name = "lblEspecialidad"
-        Me.lblEspecialidad.Size = New System.Drawing.Size(91, 18)
+        Me.lblEspecialidad.Size = New System.Drawing.Size(129, 26)
         Me.lblEspecialidad.TabIndex = 20
         Me.lblEspecialidad.Text = "Especialidad"
         '
         'txtEspecialidad
         '
-        Me.txtEspecialidad.Location = New System.Drawing.Point(12, 81)
-        Me.txtEspecialidad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtEspecialidad.Location = New System.Drawing.Point(18, 125)
         Me.txtEspecialidad.Multiline = True
         Me.txtEspecialidad.Name = "txtEspecialidad"
-        Me.txtEspecialidad.Size = New System.Drawing.Size(361, 51)
+        Me.txtEspecialidad.Size = New System.Drawing.Size(860, 76)
         Me.txtEspecialidad.TabIndex = 18
         '
         'btn_regresar
         '
         Me.btn_regresar.BackColor = System.Drawing.Color.IndianRed
         Me.btn_regresar.Font = New System.Drawing.Font("Microsoft Tai Le", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_regresar.Location = New System.Drawing.Point(488, 21)
-        Me.btn_regresar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btn_regresar.Location = New System.Drawing.Point(732, 32)
         Me.btn_regresar.Name = "btn_regresar"
-        Me.btn_regresar.Size = New System.Drawing.Size(97, 36)
+        Me.btn_regresar.Size = New System.Drawing.Size(146, 55)
         Me.btn_regresar.TabIndex = 6
         Me.btn_regresar.Text = "Regresar"
         Me.btn_regresar.UseVisualStyleBackColor = False
@@ -135,10 +132,9 @@ Partial Class frmEspecialidades
         'btnLimpiar
         '
         Me.btnLimpiar.BackColor = System.Drawing.Color.Beige
-        Me.btnLimpiar.Location = New System.Drawing.Point(121, 299)
-        Me.btnLimpiar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnLimpiar.Location = New System.Drawing.Point(182, 460)
         Me.btnLimpiar.Name = "btnLimpiar"
-        Me.btnLimpiar.Size = New System.Drawing.Size(97, 36)
+        Me.btnLimpiar.Size = New System.Drawing.Size(146, 55)
         Me.btnLimpiar.TabIndex = 1
         Me.btnLimpiar.Text = "Limpiar"
         Me.btnLimpiar.UseVisualStyleBackColor = False
@@ -146,21 +142,19 @@ Partial Class frmEspecialidades
         'btn_guardar
         '
         Me.btn_guardar.BackColor = System.Drawing.Color.LimeGreen
-        Me.btn_guardar.Location = New System.Drawing.Point(12, 299)
-        Me.btn_guardar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btn_guardar.Location = New System.Drawing.Point(18, 460)
         Me.btn_guardar.Name = "btn_guardar"
-        Me.btn_guardar.Size = New System.Drawing.Size(97, 36)
+        Me.btn_guardar.Size = New System.Drawing.Size(146, 55)
         Me.btn_guardar.TabIndex = 0
         Me.btn_guardar.Text = "Guardar"
         Me.btn_guardar.UseVisualStyleBackColor = False
         '
         'frmEspecialidades
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(630, 365)
+        Me.ClientSize = New System.Drawing.Size(945, 562)
         Me.Controls.Add(Me.gbxPersonas)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frmEspecialidades"
         Me.Text = "frmEspecialidades"
         Me.gbxPersonas.ResumeLayout(False)
@@ -180,4 +174,9 @@ Partial Class frmEspecialidades
     Friend WithEvents btn_regresar As Button
     Friend WithEvents btnLimpiar As Button
     Friend WithEvents btn_guardar As Button
+    Friend WithEvents ttGuardar As ToolTip
+    Friend WithEvents ttSalir As ToolTip
+    Friend WithEvents ttLimpiar As ToolTip
+    Friend WithEvents ttEditar As ToolTip
+    Friend WithEvents ttEliminar As ToolTip
 End Class

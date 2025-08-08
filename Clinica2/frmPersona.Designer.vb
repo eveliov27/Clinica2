@@ -22,7 +22,10 @@ Partial Class frmPersona
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.gbxPersona = New System.Windows.Forms.GroupBox()
+        Me.lblUser = New System.Windows.Forms.Label()
+        Me.cboUser = New System.Windows.Forms.ComboBox()
         Me.dtpFechaNac = New System.Windows.Forms.DateTimePicker()
         Me.lblFecha_Nac = New System.Windows.Forms.Label()
         Me.txtConacto = New System.Windows.Forms.TextBox()
@@ -48,6 +51,9 @@ Partial Class frmPersona
         Me.btnSalir = New System.Windows.Forms.Button()
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.btnRegistrar = New System.Windows.Forms.Button()
+        Me.ttRegistar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttLimpiar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttSalir = New System.Windows.Forms.ToolTip(Me.components)
         Me.gbxPersona.SuspendLayout()
         CType(Me.dgv_persona_view, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -56,6 +62,8 @@ Partial Class frmPersona
         '
         Me.gbxPersona.AutoSize = True
         Me.gbxPersona.BackColor = System.Drawing.Color.PaleGreen
+        Me.gbxPersona.Controls.Add(Me.lblUser)
+        Me.gbxPersona.Controls.Add(Me.cboUser)
         Me.gbxPersona.Controls.Add(Me.dtpFechaNac)
         Me.gbxPersona.Controls.Add(Me.lblFecha_Nac)
         Me.gbxPersona.Controls.Add(Me.txtConacto)
@@ -82,59 +90,70 @@ Partial Class frmPersona
         Me.gbxPersona.Controls.Add(Me.btnLimpiar)
         Me.gbxPersona.Controls.Add(Me.btnRegistrar)
         Me.gbxPersona.Font = New System.Drawing.Font("Microsoft Tai Le", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbxPersona.Location = New System.Drawing.Point(1, 7)
-        Me.gbxPersona.Margin = New System.Windows.Forms.Padding(2)
+        Me.gbxPersona.Location = New System.Drawing.Point(2, 11)
         Me.gbxPersona.Name = "gbxPersona"
-        Me.gbxPersona.Padding = New System.Windows.Forms.Padding(2)
-        Me.gbxPersona.Size = New System.Drawing.Size(710, 382)
+        Me.gbxPersona.Size = New System.Drawing.Size(1065, 588)
         Me.gbxPersona.TabIndex = 2
         Me.gbxPersona.TabStop = False
         Me.gbxPersona.Text = "Agregar pacientes"
         '
+        'lblUser
+        '
+        Me.lblUser.AutoSize = True
+        Me.lblUser.Location = New System.Drawing.Point(16, 53)
+        Me.lblUser.Name = "lblUser"
+        Me.lblUser.Size = New System.Drawing.Size(182, 26)
+        Me.lblUser.TabIndex = 32
+        Me.lblUser.Text = "Correo de Usuario"
+        '
+        'cboUser
+        '
+        Me.cboUser.FormattingEnabled = True
+        Me.cboUser.Items.AddRange(New Object() {"Masculino", "Femenino", "No Detallado"})
+        Me.cboUser.Location = New System.Drawing.Point(210, 45)
+        Me.cboUser.Name = "cboUser"
+        Me.cboUser.Size = New System.Drawing.Size(192, 34)
+        Me.cboUser.TabIndex = 31
+        '
         'dtpFechaNac
         '
-        Me.dtpFechaNac.Location = New System.Drawing.Point(162, 119)
-        Me.dtpFechaNac.Margin = New System.Windows.Forms.Padding(2)
+        Me.dtpFechaNac.Location = New System.Drawing.Point(233, 269)
         Me.dtpFechaNac.Name = "dtpFechaNac"
-        Me.dtpFechaNac.Size = New System.Drawing.Size(265, 24)
+        Me.dtpFechaNac.Size = New System.Drawing.Size(396, 33)
         Me.dtpFechaNac.TabIndex = 30
         '
         'lblFecha_Nac
         '
         Me.lblFecha_Nac.AutoSize = True
-        Me.lblFecha_Nac.Location = New System.Drawing.Point(17, 122)
-        Me.lblFecha_Nac.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblFecha_Nac.Location = New System.Drawing.Point(16, 274)
         Me.lblFecha_Nac.Name = "lblFecha_Nac"
-        Me.lblFecha_Nac.Size = New System.Drawing.Size(148, 18)
+        Me.lblFecha_Nac.Size = New System.Drawing.Size(211, 26)
         Me.lblFecha_Nac.TabIndex = 29
         Me.lblFecha_Nac.Text = "Fecha de Nacimiento"
         '
         'txtConacto
         '
-        Me.txtConacto.Location = New System.Drawing.Point(468, 176)
-        Me.txtConacto.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtConacto.Location = New System.Drawing.Point(749, 58)
         Me.txtConacto.Multiline = True
         Me.txtConacto.Name = "txtConacto"
-        Me.txtConacto.Size = New System.Drawing.Size(214, 50)
+        Me.txtConacto.Size = New System.Drawing.Size(291, 75)
         Me.txtConacto.TabIndex = 28
         '
         'lblConacto_Emer
         '
         Me.lblConacto_Emer.AutoSize = True
-        Me.lblConacto_Emer.Location = New System.Drawing.Point(464, 157)
-        Me.lblConacto_Emer.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblConacto_Emer.Location = New System.Drawing.Point(744, 29)
         Me.lblConacto_Emer.Name = "lblConacto_Emer"
-        Me.lblConacto_Emer.Size = New System.Drawing.Size(171, 18)
+        Me.lblConacto_Emer.Size = New System.Drawing.Size(242, 26)
         Me.lblConacto_Emer.TabIndex = 27
         Me.lblConacto_Emer.Text = "Contacto de Emergencia"
         '
         'lblTipo_Sangre
         '
         Me.lblTipo_Sangre.AutoSize = True
-        Me.lblTipo_Sangre.Location = New System.Drawing.Point(430, 122)
-        Me.lblTipo_Sangre.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblTipo_Sangre.Location = New System.Drawing.Point(50, 237)
         Me.lblTipo_Sangre.Name = "lblTipo_Sangre"
-        Me.lblTipo_Sangre.Size = New System.Drawing.Size(110, 18)
+        Me.lblTipo_Sangre.Size = New System.Drawing.Size(154, 26)
         Me.lblTipo_Sangre.TabIndex = 26
         Me.lblTipo_Sangre.Text = "Tipo de Sangre"
         '
@@ -142,40 +161,36 @@ Partial Class frmPersona
         '
         Me.cboTipo_Sangre.FormattingEnabled = True
         Me.cboTipo_Sangre.Items.AddRange(New Object() {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"})
-        Me.cboTipo_Sangre.Location = New System.Drawing.Point(555, 120)
-        Me.cboTipo_Sangre.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboTipo_Sangre.Location = New System.Drawing.Point(210, 229)
         Me.cboTipo_Sangre.Name = "cboTipo_Sangre"
-        Me.cboTipo_Sangre.Size = New System.Drawing.Size(129, 24)
+        Me.cboTipo_Sangre.Size = New System.Drawing.Size(192, 34)
         Me.cboTipo_Sangre.TabIndex = 25
         '
         'lblId
         '
         Me.lblId.AutoSize = True
-        Me.lblId.Location = New System.Drawing.Point(326, 317)
-        Me.lblId.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblId.Location = New System.Drawing.Point(744, 498)
         Me.lblId.Name = "lblId"
-        Me.lblId.Size = New System.Drawing.Size(22, 18)
+        Me.lblId.Size = New System.Drawing.Size(33, 26)
         Me.lblId.TabIndex = 23
         Me.lblId.Text = "ID"
         '
         'dgv_persona_view
         '
         Me.dgv_persona_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_persona_view.Location = New System.Drawing.Point(4, 185)
-        Me.dgv_persona_view.Margin = New System.Windows.Forms.Padding(2)
+        Me.dgv_persona_view.Location = New System.Drawing.Point(38, 318)
         Me.dgv_persona_view.Name = "dgv_persona_view"
         Me.dgv_persona_view.RowHeadersWidth = 62
         Me.dgv_persona_view.RowTemplate.Height = 28
-        Me.dgv_persona_view.Size = New System.Drawing.Size(425, 122)
+        Me.dgv_persona_view.Size = New System.Drawing.Size(977, 155)
         Me.dgv_persona_view.TabIndex = 22
         '
         'lblDireccion
         '
         Me.lblDireccion.AutoSize = True
-        Me.lblDireccion.Location = New System.Drawing.Point(465, 231)
-        Me.lblDireccion.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblDireccion.Location = New System.Drawing.Point(744, 155)
         Me.lblDireccion.Name = "lblDireccion"
-        Me.lblDireccion.Size = New System.Drawing.Size(71, 18)
+        Me.lblDireccion.Size = New System.Drawing.Size(102, 26)
         Me.lblDireccion.TabIndex = 20
         Me.lblDireccion.Text = "Direccion"
         '
@@ -183,118 +198,105 @@ Partial Class frmPersona
         '
         Me.cboSexo.FormattingEnabled = True
         Me.cboSexo.Items.AddRange(New Object() {"Masculino", "Femenino", "No Detallado"})
-        Me.cboSexo.Location = New System.Drawing.Point(555, 70)
-        Me.cboSexo.Margin = New System.Windows.Forms.Padding(2)
+        Me.cboSexo.Location = New System.Drawing.Point(517, 229)
         Me.cboSexo.Name = "cboSexo"
-        Me.cboSexo.Size = New System.Drawing.Size(129, 24)
+        Me.cboSexo.Size = New System.Drawing.Size(192, 34)
         Me.cboSexo.TabIndex = 19
         '
         'txtDireccion
         '
-        Me.txtDireccion.Location = New System.Drawing.Point(468, 250)
-        Me.txtDireccion.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtDireccion.Location = New System.Drawing.Point(749, 184)
         Me.txtDireccion.Multiline = True
         Me.txtDireccion.Name = "txtDireccion"
-        Me.txtDireccion.Size = New System.Drawing.Size(214, 59)
+        Me.txtDireccion.Size = New System.Drawing.Size(291, 89)
         Me.txtDireccion.TabIndex = 18
         '
         'lblSexo
         '
         Me.lblSexo.AutoSize = True
-        Me.lblSexo.Location = New System.Drawing.Point(494, 72)
-        Me.lblSexo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblSexo.Location = New System.Drawing.Point(426, 232)
         Me.lblSexo.Name = "lblSexo"
-        Me.lblSexo.Size = New System.Drawing.Size(41, 18)
+        Me.lblSexo.Size = New System.Drawing.Size(57, 26)
         Me.lblSexo.TabIndex = 17
         Me.lblSexo.Text = "Sexo"
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(107, 68)
-        Me.txtNombre.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtNombre.Location = New System.Drawing.Point(213, 167)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(129, 24)
+        Me.txtNombre.Size = New System.Drawing.Size(192, 33)
         Me.txtNombre.TabIndex = 16
         '
         'txtApellidos
         '
-        Me.txtApellidos.Location = New System.Drawing.Point(329, 68)
-        Me.txtApellidos.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtApellidos.Location = New System.Drawing.Point(517, 170)
         Me.txtApellidos.Name = "txtApellidos"
-        Me.txtApellidos.Size = New System.Drawing.Size(129, 24)
+        Me.txtApellidos.Size = New System.Drawing.Size(192, 33)
         Me.txtApellidos.TabIndex = 15
         '
         'txtEdad
         '
-        Me.txtEdad.Location = New System.Drawing.Point(555, 21)
-        Me.txtEdad.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtEdad.Location = New System.Drawing.Point(517, 45)
         Me.txtEdad.Name = "txtEdad"
-        Me.txtEdad.Size = New System.Drawing.Size(129, 24)
+        Me.txtEdad.Size = New System.Drawing.Size(192, 33)
         Me.txtEdad.TabIndex = 14
         '
         'txtTelefono
         '
-        Me.txtTelefono.Location = New System.Drawing.Point(329, 21)
-        Me.txtTelefono.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtTelefono.Location = New System.Drawing.Point(517, 111)
         Me.txtTelefono.Name = "txtTelefono"
-        Me.txtTelefono.Size = New System.Drawing.Size(129, 24)
+        Me.txtTelefono.Size = New System.Drawing.Size(192, 33)
         Me.txtTelefono.TabIndex = 13
         '
         'txtIdentificacion
         '
-        Me.txtIdentificacion.Location = New System.Drawing.Point(107, 21)
-        Me.txtIdentificacion.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtIdentificacion.Location = New System.Drawing.Point(210, 112)
         Me.txtIdentificacion.Name = "txtIdentificacion"
-        Me.txtIdentificacion.Size = New System.Drawing.Size(129, 24)
+        Me.txtIdentificacion.Size = New System.Drawing.Size(192, 33)
         Me.txtIdentificacion.TabIndex = 12
         '
         'lblEdad
         '
         Me.lblEdad.AutoSize = True
-        Me.lblEdad.Location = New System.Drawing.Point(494, 23)
-        Me.lblEdad.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblEdad.Location = New System.Drawing.Point(426, 48)
         Me.lblEdad.Name = "lblEdad"
-        Me.lblEdad.Size = New System.Drawing.Size(41, 18)
+        Me.lblEdad.Size = New System.Drawing.Size(58, 26)
         Me.lblEdad.TabIndex = 11
         Me.lblEdad.Text = "Edad"
         '
         'lblTelefono
         '
         Me.lblTelefono.AutoSize = True
-        Me.lblTelefono.Location = New System.Drawing.Point(261, 25)
-        Me.lblTelefono.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblTelefono.Location = New System.Drawing.Point(415, 115)
         Me.lblTelefono.Name = "lblTelefono"
-        Me.lblTelefono.Size = New System.Drawing.Size(67, 18)
+        Me.lblTelefono.Size = New System.Drawing.Size(96, 26)
         Me.lblTelefono.TabIndex = 10
         Me.lblTelefono.Text = "Telefono"
         '
         'lblApellidos
         '
         Me.lblApellidos.AutoSize = True
-        Me.lblApellidos.Location = New System.Drawing.Point(259, 72)
-        Me.lblApellidos.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblApellidos.Location = New System.Drawing.Point(411, 177)
         Me.lblApellidos.Name = "lblApellidos"
-        Me.lblApellidos.Size = New System.Drawing.Size(71, 18)
+        Me.lblApellidos.Size = New System.Drawing.Size(100, 26)
         Me.lblApellidos.TabIndex = 9
         Me.lblApellidos.Text = "Apellidos"
         '
         'lblNombre
         '
         Me.lblNombre.AutoSize = True
-        Me.lblNombre.Location = New System.Drawing.Point(44, 72)
-        Me.lblNombre.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblNombre.Location = New System.Drawing.Point(109, 170)
         Me.lblNombre.Name = "lblNombre"
-        Me.lblNombre.Size = New System.Drawing.Size(64, 18)
+        Me.lblNombre.Size = New System.Drawing.Size(89, 26)
         Me.lblNombre.TabIndex = 8
         Me.lblNombre.Text = "Nombre"
         '
         'lblIdentificacion
         '
         Me.lblIdentificacion.AutoSize = True
-        Me.lblIdentificacion.Location = New System.Drawing.Point(9, 25)
-        Me.lblIdentificacion.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblIdentificacion.Location = New System.Drawing.Point(56, 118)
         Me.lblIdentificacion.Name = "lblIdentificacion"
-        Me.lblIdentificacion.Size = New System.Drawing.Size(98, 18)
+        Me.lblIdentificacion.Size = New System.Drawing.Size(142, 26)
         Me.lblIdentificacion.TabIndex = 7
         Me.lblIdentificacion.Text = "Identificacion"
         '
@@ -302,10 +304,9 @@ Partial Class frmPersona
         '
         Me.btnSalir.BackColor = System.Drawing.Color.IndianRed
         Me.btnSalir.Font = New System.Drawing.Font("Microsoft Tai Le", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSalir.Location = New System.Drawing.Point(587, 324)
-        Me.btnSalir.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnSalir.Location = New System.Drawing.Point(880, 498)
         Me.btnSalir.Name = "btnSalir"
-        Me.btnSalir.Size = New System.Drawing.Size(97, 36)
+        Me.btnSalir.Size = New System.Drawing.Size(146, 55)
         Me.btnSalir.TabIndex = 6
         Me.btnSalir.Text = "Salir"
         Me.btnSalir.UseVisualStyleBackColor = False
@@ -313,10 +314,9 @@ Partial Class frmPersona
         'btnLimpiar
         '
         Me.btnLimpiar.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.btnLimpiar.Location = New System.Drawing.Point(121, 324)
-        Me.btnLimpiar.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnLimpiar.Location = New System.Drawing.Point(182, 498)
         Me.btnLimpiar.Name = "btnLimpiar"
-        Me.btnLimpiar.Size = New System.Drawing.Size(97, 36)
+        Me.btnLimpiar.Size = New System.Drawing.Size(146, 55)
         Me.btnLimpiar.TabIndex = 1
         Me.btnLimpiar.Text = "Limpiar"
         Me.btnLimpiar.UseVisualStyleBackColor = False
@@ -324,21 +324,20 @@ Partial Class frmPersona
         'btnRegistrar
         '
         Me.btnRegistrar.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.btnRegistrar.Location = New System.Drawing.Point(12, 324)
-        Me.btnRegistrar.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnRegistrar.Location = New System.Drawing.Point(18, 498)
         Me.btnRegistrar.Name = "btnRegistrar"
-        Me.btnRegistrar.Size = New System.Drawing.Size(97, 36)
+        Me.btnRegistrar.Size = New System.Drawing.Size(146, 55)
         Me.btnRegistrar.TabIndex = 0
         Me.btnRegistrar.Text = "Registar"
         Me.btnRegistrar.UseVisualStyleBackColor = False
         '
         'frmPersona
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(703, 397)
+        Me.AutoSize = True
+        Me.ClientSize = New System.Drawing.Size(1054, 611)
         Me.Controls.Add(Me.gbxPersona)
-        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmPersona"
         Me.Text = "frmPersona"
         Me.gbxPersona.ResumeLayout(False)
@@ -375,4 +374,9 @@ Partial Class frmPersona
     Friend WithEvents txtConacto As TextBox
     Friend WithEvents lblConacto_Emer As Label
     Friend WithEvents lblTipo_Sangre As Label
+    Friend WithEvents lblUser As Label
+    Friend WithEvents cboUser As ComboBox
+    Friend WithEvents ttRegistar As ToolTip
+    Friend WithEvents ttLimpiar As ToolTip
+    Friend WithEvents ttSalir As ToolTip
 End Class

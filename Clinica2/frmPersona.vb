@@ -6,94 +6,82 @@ Public Class frmPersona
     Dim conexion As New Conexion()
 
 
+    'La clase persona es la principal clase, aqui se meten los datos de los pacientes y doctores 
     Private Sub btnRegistrar_Click(sender As Object, e As EventArgs) Handles btnRegistrar.Click
-        Dim conexionBD As MySqlConnection = Conexion.Abrir()
-        Dim correo As String = Form1.correoUsuarioActual
-        If Not (correo.EndsWith("@paciente") Or correo.EndsWith("@admin")) Then
-            MessageBox.Show("No tienes rights para agregar pacientes, contacte a un administrador o un doctor.", "Acceso restringido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub
-        End If
-        ' PRIMERO obtenemos el ID del usuario basado en el correo
-        Dim getUserIdQuery As New MySqlCommand("SELECT id FROM usuarios WHERE correo = @correo", conexionBD)
-        getUserIdQuery.Parameters.AddWithValue("@correo", Form1.correoUsuarioActual)
-        Dim usuarios_id As Integer = -1
+        Dim conexionBD As MySqlConnection = conexion.Abrir()
 
-        ' Aquí deberías obtener el ID del usuario de alguna manera, por ejemplo, desde un formulario anterior
         Try
-            Dim reader As MySqlDataReader = getUserIdQuery.ExecuteReader()
-            If reader.Read() Then
-                usuarios_id += 0
-                usuarios_id = Convert.ToInt32(reader("id"))
-            Else
-                MessageBox.Show("No se pudo obtener el ID del usuario.")
-                reader.Close()
-                Conexion.Cerrar()
+            Dim usuarios_id As Integer = Convert.ToInt32(cboUser.SelectedValue) 'Con base el el id de usuarios, vamos a cargar el correo relacionado con la persona
+            Dim correo As String = cboUser.Text
+
+            ' Validación de permisos
+            If Not (correo.EndsWith("@paciente") Or correo.EndsWith("@admin") Or correo.EndsWith("@doctor")) Then
+                MessageBox.Show("No tienes derechos para agregar personas. Contacte a un administrador.", "Acceso restringido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Exit Sub
             End If
-            reader.Close()
 
-            ' INSERTAMOS en paciente usando el ID obtenido
-            Dim insertQuery As New MySqlCommand("
-    INSERT INTO persona
-    (identificacion, nombre_completo, apellidos, direccion, telefono, correo, edad, sexo, fecha_nacimiento, tipo_sangre, contacto_emer, usuarios_id) 
-    VALUES 
-    (@identificacion, @nombre, @apellidos, @direccion, @telefono, @correo, @edad, @sexo, @fecha_nacimiento, @tipo_sangre, @contacto_emer, @usuarios_id)
-", conexionBD)
+            ' Insertar Persona
+            Dim insertPersonaQuery As New MySqlCommand("
+            INSERT INTO persona
+            (identificacion, nombre_completo, apellidos, direccion, telefono, correo, edad, sexo, fecha_nacimiento, tipo_sangre, contacto_emer, usuarios_id) 
+            VALUES 
+            (@identificacion, @nombre, @apellidos, @direccion, @telefono, @correo, @edad, @sexo, @fecha_nacimiento, @tipo_sangre, @contacto_emer, @usuarios_id);
+        ", conexionBD)
 
+            insertPersonaQuery.Parameters.AddWithValue("@identificacion", txtIdentificacion.Text)
+            insertPersonaQuery.Parameters.AddWithValue("@nombre", txtNombre.Text)
+            insertPersonaQuery.Parameters.AddWithValue("@apellidos", txtApellidos.Text)
+            insertPersonaQuery.Parameters.AddWithValue("@direccion", txtDireccion.Text)
+            insertPersonaQuery.Parameters.AddWithValue("@telefono", txtTelefono.Text)
+            insertPersonaQuery.Parameters.AddWithValue("@correo", correo)
+            insertPersonaQuery.Parameters.AddWithValue("@edad", txtEdad.Text)
+            insertPersonaQuery.Parameters.AddWithValue("@sexo", cboSexo.SelectedItem.ToString())
+            insertPersonaQuery.Parameters.AddWithValue("@fecha_nacimiento", dtpFechaNac.Value)
+            insertPersonaQuery.Parameters.AddWithValue("@tipo_sangre", cboTipo_Sangre.SelectedItem.ToString())
+            insertPersonaQuery.Parameters.AddWithValue("@contacto_emer", txtConacto.Text)
+            insertPersonaQuery.Parameters.AddWithValue("@usuarios_id", usuarios_id)
 
-
-            insertQuery.Parameters.AddWithValue("@identificacion", txtIdentificacion.Text)
-            insertQuery.Parameters.AddWithValue("@nombre", txtNombre.Text)
-            insertQuery.Parameters.AddWithValue("@apellidos", txtApellidos.Text)
-            insertQuery.Parameters.AddWithValue("@direccion", txtDireccion.Text)
-            insertQuery.Parameters.AddWithValue("@telefono", txtTelefono.Text)
-            insertQuery.Parameters.AddWithValue("@correo", Form1.correoUsuarioActual)
-            insertQuery.Parameters.AddWithValue("@edad", txtEdad.Text)
-            insertQuery.Parameters.AddWithValue("@sexo", cboSexo.SelectedItem.ToString())
-            insertQuery.Parameters.AddWithValue("@fecha_nacimiento", dtpFechaNac.Value)
-            insertQuery.Parameters.AddWithValue("@tipo_sangre", cboTipo_Sangre.SelectedItem.ToString())
-            insertQuery.Parameters.AddWithValue("@contacto_emer", txtConacto.Text)
-            insertQuery.Parameters.AddWithValue("@usuarios_id", usuarios_id)
-
-
-            insertQuery.ExecuteNonQuery()
-            'Mostrar el ID de usuario asignado al paciente
-            MessageBox.Show("Paciente registrado exitosamente con ID de usuario: " & usuarios_id.ToString(), "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-
-            MessageBox.Show("Paciente registrado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
+            insertPersonaQuery.ExecuteNonQuery()
+            MessageBox.Show("Persona registrada exitosamente con ID de usuario: " & usuarios_id.ToString(), "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            cargarVistaPersona() 'Refrescar la informacion en el data view
         Catch ex As Exception
-            MessageBox.Show("Error al registrar paciente: " & ex.Message)
+            MessageBox.Show("Error al registrar persona: " & ex.Message)
         Finally
-            Conexion.Cerrar()
+            conexion.Cerrar()
         End Try
     End Sub
 
+    'Limpiar los datos del form
     Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
         txtNombre.Text = ""
         txtIdentificacion.Text = ""
         txtApellidos.Text = ""
         txtDireccion.Text = ""
         txtTelefono.Text = ""
-        cboSexo.SelectedValue = -1
         txtEdad.Text = ""
-        txtIdentificacion.Focus()
-        cboTipo_Sangre.SelectedIndex = -1
-        dtpFechaNac.Value = DateTime.Now ' Limpiar la fecha de nacimiento
         txtConacto.Text = ""
+        txtIdentificacion.Focus()
+
+
+        'Limpiar los combo boxes
+        cboSexo.SelectedIndex = -1
+        cboTipo_Sangre.SelectedIndex = -1
+        cboUser.SelectedIndex = -1
+
+        dtpFechaNac.Value = DateTime.Now ' Limpiar la fecha de nacimiento, con la fecha actual
 
     End Sub
-
+    'Regresa al dashboard
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         frmDashboard.Show()
         Me.Close()
     End Sub
-    Sub cargarVistaDoc()
+    'Cargamos la vista de persona, en donde se relaciona la informacion del usuario y la persona
+    Sub cargarVistaPersona()
         Try
             'ANTES DE REALIZAR EL INSERT  HACE UN SELECT, SE TRAEN EL ULTIMO ID Y LE SUMAN 1
             Dim conn = conexion.Abrir()
-            Dim query As String = "SELECT * FROM vista_pacientes"
+            Dim query As String = "SELECT * FROM vista_personas"
             Dim adapter As New MySqlDataAdapter(query, conn)
             Dim dt As New DataTable()
             adapter.Fill(dt)
@@ -119,9 +107,50 @@ Public Class frmPersona
             'MessageBox.Show("ID de la especialidad seleccionada: " & especialidadId.ToString(), "Especialidad Seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
-
+    'Se carga la vista de persona al momento de leer el form Persona, y se llena el combo box de usuarios
     Private Sub frmPersona_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cargarVistaDoc()
+        cargarVistaPersona()
         ' Cargar la vista de pacientes al iniciar el formulario
+        llenarComboUser()
+        ' Llenar el combo de usuarios al cargar el formulario
     End Sub
+
+    Private Sub llenarComboUser()
+        'Llenamos el combo de Usuario con los datos de la base de datos
+        Dim conexionBD As MySqlConnection = conexion.Abrir()
+        Dim query As String = "SELECT id, correo FROM usuarios"
+        Try
+            Dim cmd As New MySqlCommand(query, conexionBD)
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+            Dim dt As New DataTable()
+            dt.Load(reader)
+            cboUser.DataSource = dt
+            cboUser.DisplayMember = "correo"   ' Columna a mostrar
+            cboUser.ValueMember = "id"         ' Valor para usar internamente
+            cboUser.SelectedIndex = -1
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar especialidades: " & ex.Message)
+        Finally
+            conexion.Cerrar()
+        End Try
+    End Sub
+    'Tooltip para ingresar una persona
+    Private Sub btnRegistrar_MouseHover(sender As Object, e As EventArgs) Handles btnRegistrar.MouseHover
+        ttRegistar.SetToolTip(btnRegistrar, "Click para registrar una persona")
+        ttRegistar.ToolTipTitle = "Informacion"
+        ttRegistar.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+    'Tooltip para limpiar
+    Private Sub btnLimpiar_MouseHover(sender As Object, e As EventArgs) Handles btnLimpiar.MouseHover
+        ttLimpiar.SetToolTip(btnLimpiar, "Borrar la informacion")
+        ttLimpiar.ToolTipTitle = "Informacion"
+        ttLimpiar.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+    'Tool tip para salir al menu principal
+    Private Sub btnSalir_MouseHover(sender As Object, e As EventArgs) Handles btnSalir.MouseHover
+        ttSalir.SetToolTip(btnSalir, "Volver al menu principal")
+        ttSalir.ToolTipTitle = "Informacion"
+        ttSalir.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
 End Class

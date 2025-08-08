@@ -22,7 +22,10 @@ Partial Class frmCrearCuenta
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.gbCrearCuenta = New System.Windows.Forms.GroupBox()
+        Me.lblTipoUsuario = New System.Windows.Forms.Label()
+        Me.cbo_Tipo_usuario = New System.Windows.Forms.ComboBox()
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.txtCorreo = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -32,8 +35,9 @@ Partial Class frmCrearCuenta
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.lblPsswrd = New System.Windows.Forms.Label()
         Me.lblNombre = New System.Windows.Forms.Label()
-        Me.cbo_Tipo_usuario = New System.Windows.Forms.ComboBox()
-        Me.lblTipoUsuario = New System.Windows.Forms.Label()
+        Me.ttRegresar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttLimpiar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttGuardar = New System.Windows.Forms.ToolTip(Me.components)
         Me.gbCrearCuenta.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -58,6 +62,25 @@ Partial Class frmCrearCuenta
         Me.gbCrearCuenta.TabIndex = 2
         Me.gbCrearCuenta.TabStop = False
         Me.gbCrearCuenta.Text = "Crear Cuenta"
+        '
+        'lblTipoUsuario
+        '
+        Me.lblTipoUsuario.AutoSize = True
+        Me.lblTipoUsuario.Font = New System.Drawing.Font("Microsoft YaHei", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTipoUsuario.Location = New System.Drawing.Point(101, 374)
+        Me.lblTipoUsuario.Name = "lblTipoUsuario"
+        Me.lblTipoUsuario.Size = New System.Drawing.Size(172, 27)
+        Me.lblTipoUsuario.TabIndex = 12
+        Me.lblTipoUsuario.Text = "Tipo de Usuario"
+        '
+        'cbo_Tipo_usuario
+        '
+        Me.cbo_Tipo_usuario.FormattingEnabled = True
+        Me.cbo_Tipo_usuario.Items.AddRange(New Object() {"Administrador", "Paciente", "Doctor", "Soporte"})
+        Me.cbo_Tipo_usuario.Location = New System.Drawing.Point(377, 366)
+        Me.cbo_Tipo_usuario.Name = "cbo_Tipo_usuario"
+        Me.cbo_Tipo_usuario.Size = New System.Drawing.Size(237, 35)
+        Me.cbo_Tipo_usuario.TabIndex = 11
         '
         'btnLimpiar
         '
@@ -142,24 +165,8 @@ Partial Class frmCrearCuenta
         Me.lblNombre.TabIndex = 0
         Me.lblNombre.Text = "Nombre"
         '
-        'cbo_Tipo_usuario
+        'ttGuardar
         '
-        Me.cbo_Tipo_usuario.FormattingEnabled = True
-        Me.cbo_Tipo_usuario.Items.AddRange(New Object() {"Administrador", "Paciente", "Doctor", "Soporte"})
-        Me.cbo_Tipo_usuario.Location = New System.Drawing.Point(377, 366)
-        Me.cbo_Tipo_usuario.Name = "cbo_Tipo_usuario"
-        Me.cbo_Tipo_usuario.Size = New System.Drawing.Size(237, 35)
-        Me.cbo_Tipo_usuario.TabIndex = 11
-        '
-        'lblTipoUsuario
-        '
-        Me.lblTipoUsuario.AutoSize = True
-        Me.lblTipoUsuario.Font = New System.Drawing.Font("Microsoft YaHei", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTipoUsuario.Location = New System.Drawing.Point(101, 374)
-        Me.lblTipoUsuario.Name = "lblTipoUsuario"
-        Me.lblTipoUsuario.Size = New System.Drawing.Size(172, 27)
-        Me.lblTipoUsuario.TabIndex = 12
-        Me.lblTipoUsuario.Text = "Tipo de Usuario"
         '
         'frmCrearCuenta
         '
@@ -187,4 +194,7 @@ Partial Class frmCrearCuenta
     Friend WithEvents lblNombre As Label
     Friend WithEvents cbo_Tipo_usuario As ComboBox
     Friend WithEvents lblTipoUsuario As Label
+    Friend WithEvents ttRegresar As ToolTip
+    Friend WithEvents ttLimpiar As ToolTip
+    Friend WithEvents ttGuardar As ToolTip
 End Class

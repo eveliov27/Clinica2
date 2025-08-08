@@ -133,6 +133,12 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmConsulta.Designer.vb">
+      <DependentUpon>frmConsulta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmConsulta.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCrearCuenta.Designer.vb">
       <DependentUpon>frmCrearCuenta.vb</DependentUpon>
     </Compile>
@@ -155,6 +161,12 @@
       <DependentUpon>frmPersona.vb</DependentUpon>
     </Compile>
     <Compile Include="frmPersona.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTratamiento.Designer.vb">
+      <DependentUpon>frmTratamiento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTratamiento.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmUsuarios.Designer.vb">
@@ -189,6 +201,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmConsulta.resx">
+      <DependentUpon>frmConsulta.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCrearCuenta.resx">
       <DependentUpon>frmCrearCuenta.vb</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPersona.resx">
       <DependentUpon>frmPersona.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTratamiento.resx">
+      <DependentUpon>frmTratamiento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsuarios.resx">
       <DependentUpon>frmUsuarios.vb</DependentUpon>

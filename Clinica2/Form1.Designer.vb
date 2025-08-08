@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.btnSalir = New System.Windows.Forms.Button()
@@ -31,6 +32,10 @@ Partial Class Form1
         Me.txtUser = New System.Windows.Forms.TextBox()
         Me.lblPsswrd = New System.Windows.Forms.Label()
         Me.lblIngresarCorreo = New System.Windows.Forms.Label()
+        Me.ttCrearCuenta = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttIngresar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttLimpiar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttSalir = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -134,6 +139,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(958, 552)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "Form1"
@@ -153,4 +159,8 @@ Partial Class Form1
     Friend WithEvents txtUser As TextBox
     Friend WithEvents lblPsswrd As Label
     Friend WithEvents lblIngresarCorreo As Label
+    Friend WithEvents ttCrearCuenta As ToolTip
+    Friend WithEvents ttIngresar As ToolTip
+    Friend WithEvents ttLimpiar As ToolTip
+    Friend WithEvents ttSalir As ToolTip
 End Class

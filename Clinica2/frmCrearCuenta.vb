@@ -2,21 +2,19 @@
 Imports System.Security.Cryptography
 
 Imports System.Text
-
+'Form exclusivo de crear cuenta desde la pagina de inicio
 Public Class frmCrearCuenta
     Dim conexion As New Conexion()
+
     Private Sub btn_regresar_Click(sender As Object, e As EventArgs) Handles btn_regresar.Click
-        Form1.Show()
+        Form1.Show() 'Envia al usuario a la pagina del login
         Me.Close()
     End Sub
 
-    Private Sub frmCrearCuenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
     Private Sub btn_guardar_Click(sender As Object, e As EventArgs) Handles btn_guardar.Click
 
-        Dim nombre As String = txtNombre.Text.Trim() 'Limpiar
+        Dim nombre As String = txtNombre.Text.Trim() 'Capturar los datos
         Dim correo As String = txtCorreo.Text.Trim()
         Dim password As String = txtPsswd.Text.Trim()
         Dim tipo_usuario As String = cbo_Tipo_usuario.Text.Trim()
@@ -32,9 +30,9 @@ Public Class frmCrearCuenta
             Using command As New MySqlCommand(insertQuery, conn)
                 ' Añadir parámetros para evitar inyección SQL
                 command.Parameters.AddWithValue("@nombre", nombre)
-                command.Parameters.AddWithValue("@correo", correo) ' ¡Recordatorio: en una app real, hashea las contraseñas!
-                command.Parameters.AddWithValue("@password", HashSHA256(password)) ' ¡Recordatorio: en una app real, hashea las contraseñas!
-                command.Parameters.AddWithValue("@tipo_usuario", tipo_usuario) ' ¡Recordatorio: en una app real, hashea las contraseñas!
+                command.Parameters.AddWithValue("@correo", correo)
+                command.Parameters.AddWithValue("@password", HashSHA256(password)) ' Contraseña hasheada
+                command.Parameters.AddWithValue("@tipo_usuario", tipo_usuario)
 
                 Dim rowsAffected As Integer = command.ExecuteNonQuery()
 
@@ -55,11 +53,42 @@ Public Class frmCrearCuenta
             MessageBox.Show("Error de base de datos al registrar usuario: " & ex.Message, "Error MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Function HashSHA256(texto As String) As String
-        Using sha256 As SHA256 = sha256.Create()
+    Private Function HashSHA256(texto As String) As String 'Hash de constrasena
+        Using sha256 As SHA256 = SHA256.Create()
             Dim bytes As Byte() = Encoding.UTF8.GetBytes(texto)
             Dim hash As Byte() = sha256.ComputeHash(bytes)
             Return BitConverter.ToString(hash).Replace("-", "").ToLower()
         End Using
     End Function
+    'Limpiar o borrar los valores escritos
+    Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
+        txtCorreo.Text = "" ' Limpiar la informacion del correo 
+        txtNombre.Text = "" ' Limpiar el username 
+        txtPsswd.Text = "" ' Limpiar la contrasena 
+        cbo_Tipo_usuario.SelectedValue = -1 ' Limpiar la selección del ComboBox de paciente
+
+    End Sub
+
+    'Tool tip para regresar
+    Private Sub btn_regresar_MouseHover(sender As Object, e As EventArgs) Handles btn_regresar.MouseHover
+
+        ttRegresar.SetToolTip(btn_regresar, "Volover al menu principal")
+        ttRegresar.ToolTipTitle = "Informacion"
+        ttRegresar.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
+    'Tooltip para limpiar
+    Private Sub btnLimpiar_MouseHover(sender As Object, e As EventArgs) Handles btnLimpiar.MouseHover
+
+        ttLimpiar.SetToolTip(btn_regresar, "Borrar la informacion")
+        ttLimpiar.ToolTipTitle = "Informacion"
+        ttLimpiar.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+    'Tooltip para guardar
+    Private Sub btn_guardar_MouseHover(sender As Object, e As EventArgs) Handles btn_guardar.MouseHover
+
+        ttGuardar.SetToolTip(btn_regresar, "Borrar la informacion")
+        ttGuardar.ToolTipTitle = "Informacion"
+        ttGuardar.ToolTipIcon = ToolTipIcon.Info
+    End Sub
 End Class

@@ -4,11 +4,12 @@ Imports MySql.Data.MySqlClient
 
 Public Class frmUsuarios
     Dim conexion As New Conexion()
+    'Vuelve al dashboard
     Private Sub btn_regresar_Click(sender As Object, e As EventArgs) Handles btn_regresar.Click
         frmDashboard.Show()
         Me.Close()
     End Sub
-
+    'Guarda los nuevos usuarios creados por el administrador
     Private Sub btn_guardar_Click(sender As Object, e As EventArgs) Handles btn_guardar.Click
         Dim nombre As String = txtNombre.Text.Trim() 'Limpiar
         Dim correo As String = txtCorreo.Text.Trim()
@@ -26,14 +27,16 @@ Public Class frmUsuarios
             Using command As New MySqlCommand(insertQuery, conn)
                 ' Añadir parámetros para evitar inyección SQL
                 command.Parameters.AddWithValue("@nombre", nombre)
-                command.Parameters.AddWithValue("@correo", correo) ' ¡Recordatorio: en una app real, hashea las contraseñas!
-                command.Parameters.AddWithValue("@password", HashSHA256(password)) ' ¡Recordatorio: en una app real, hashea las contraseñas!
-                command.Parameters.AddWithValue("@tipo_usuario", tipo_usuario) ' ¡Recordatorio: en una app real, hashea las contraseñas!
+                command.Parameters.AddWithValue("@correo", correo) ' 
+                command.Parameters.AddWithValue("@password", HashSHA256(password)) ' Hash de contrasena
+                command.Parameters.AddWithValue("@tipo_usuario", tipo_usuario)
 
                 Dim rowsAffected As Integer = command.ExecuteNonQuery()
 
                 If rowsAffected > 0 Then
+
                     MessageBox.Show("Usuario '" & nombre & "' registrado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    cargarVista()
                     ' Opcional: Limpiar los campos después de un registro exitoso
                     txtNombre.Clear()
                     txtCorreo.Clear()
@@ -49,12 +52,12 @@ Public Class frmUsuarios
             MessageBox.Show("Error de base de datos al registrar usuario: " & ex.Message, "Error MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
+    'Carga la vista desde el momento que se lee el form 
     Private Sub frmEspecialidades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'MANDAR A LLAMAR AL METODO QUE CARGA LOS DATOS
         cargarVista()
     End Sub
-
+    'Sub para cargar la vista desde la base de datos 
     Sub cargarVista()
         Try
             'ANTES DE REALIZAR EL INSERT  HACE Un SELECT, SE TRAEN EL ULTIMO ID Y LE SUMAN 1
@@ -69,7 +72,7 @@ Public Class frmUsuarios
             MessageBox.Show("Error al cargar las especialidades: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub dgv_especialidades_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_Usuarios.CellContentClick
+    Private Sub dgv_Usuarioss_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_Usuarios.CellContentClick
         ' Aquí puedes manejar el evento de clic en la celda si es necesario
         ' Por ejemplo, si quieres mostrar un mensaje con el ID de la especialidad seleccionada:
         If e.RowIndex >= 0 Then
@@ -110,7 +113,7 @@ Public Class frmUsuarios
             MessageBox.Show("Por favor, seleccione un usuario para eliminar.", "Selección Invalida", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
-
+    'Hash de contraseñas
     Private Function HashSHA256(texto As String) As String
         Using sha256 As SHA256 = sha256.Create()
             Dim bytes As Byte() = Encoding.UTF8.GetBytes(texto)
@@ -119,11 +122,28 @@ Public Class frmUsuarios
         End Using
     End Function
 
-    Private Sub lblTipoUsuario_Click(sender As Object, e As EventArgs) Handles lblTipoUsuario.Click
-
+    'Tooltip para guardar un usuario
+    Private Sub btn_guardar_MouseHover(sender As Object, e As EventArgs) Handles btn_guardar.MouseHover
+        ttGuardar.SetToolTip(btn_guardar, "Click para registrar un usuario")
+        ttGuardar.ToolTipTitle = "Informacion"
+        ttGuardar.ToolTipIcon = ToolTipIcon.Info
     End Sub
-
-    Private Sub cbo_Tipo_usuario_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbo_Tipo_usuario.SelectedIndexChanged
-
+    'Tooltip para limpiar
+    Private Sub btnLimpiar_MouseHover(sender As Object, e As EventArgs) Handles btnLimpiar.MouseHover
+        ttLimpiar.SetToolTip(btnLimpiar, "Borrar la informacion")
+        ttLimpiar.ToolTipTitle = "Informacion"
+        ttLimpiar.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+    'Tool tip para salir al menu principal
+    Private Sub btn_regresar_MouseHover(sender As Object, e As EventArgs) Handles btn_regresar.MouseHover
+        ttRegresar.SetToolTip(btn_regresar, "Volver al menu principal")
+        ttRegresar.ToolTipTitle = "Informacion"
+        ttRegresar.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+    'Tool tip para eliminar una entrada
+    Private Sub btn_eliminar_MouseHover(sender As Object, e As EventArgs) Handles btn_eliminar.MouseHover
+        ttEliminar.SetToolTip(btn_regresar, "Eliminar una entrada")
+        ttEliminar.ToolTipTitle = "Informacion"
+        ttEliminar.ToolTipIcon = ToolTipIcon.Warning
     End Sub
 End Class
